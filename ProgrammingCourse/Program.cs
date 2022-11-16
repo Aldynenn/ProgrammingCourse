@@ -37,7 +37,7 @@ namespace ProgrammingCourse
         {
             Console.WriteLine($"5. feladat:\n" +
                 $"\tA következő diákoknak van tandíjelmaradása:");
-            var diakok = (from d in data where ((d.paidSum < 2600 && d.code == 0) || (d.paidSum < 312 * d.honap && d.code == 1)) select d.name).ToList();
+            var diakok = (from d in data where ((d.paidSum < 2600 && d.code == 0) || (d.paidSum < 312 * CourseData.honap && d.code == 1)) select d.name).ToList();
             foreach (var diak in diakok)
             {
                 Console.WriteLine($"\t{diak}");
