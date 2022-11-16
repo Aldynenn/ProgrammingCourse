@@ -17,14 +17,31 @@ namespace ProgrammingCourse
             HarmadikFeladat();
             NegyedikFeladat();
             OtodikFeladat();
+            HatodikFeladat();
 
             Console.ReadKey();
+        }
+
+        private static void HatodikFeladat()
+        {
+            Console.WriteLine($"6. feladat:\n" +
+                $"\tÁrajánlatot kap:");
+            var tanulok = (from d in data where d.code == 2 && d.paidSum == 0 && d.results.Values.Min(x => x) > 51 select d).ToList();
+            foreach (var tanulo in tanulok)
+            {
+                Console.WriteLine($"\t{tanulo.name, -20}{tanulo.results.Sum(x => x.Value)}");
+            }
         }
 
         private static void OtodikFeladat()
         {
             Console.WriteLine($"5. feladat:\n" +
                 $"\tA következő diákoknak van tandíjelmaradása:");
+            var diakok = (from d in data where ((d.paidSum < 2600 && d.code == 0) || (d.paidSum < 312 * 5 && d.code == 1)) select d.name).ToList();
+            foreach (var diak in diakok)
+            {
+                Console.WriteLine($"\t{diak}");
+            }
         }
 
         private static void NegyedikFeladat()
