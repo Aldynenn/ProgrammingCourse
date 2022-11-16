@@ -23,7 +23,8 @@ namespace ProgrammingCourse
 
         private static void OtodikFeladat()
         {
-
+            Console.WriteLine($"5. feladat:\n" +
+                $"\tA következő diákoknak van tandíjelmaradása:");
         }
 
         private static void NegyedikFeladat()
