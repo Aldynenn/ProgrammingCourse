@@ -13,7 +13,7 @@ namespace ProgrammingCourse
         public int code;
         public int paidSum;
         public Dictionary<string, int> results = new Dictionary<string, int>();
-        public const int honap = 5;
+        public const int HONAP = 5;
 
         public CourseData(string row)
         {

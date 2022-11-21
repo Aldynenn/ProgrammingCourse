@@ -25,8 +25,8 @@ namespace ProgrammingCourse
         private static void HatodikFeladat()
         {
             Console.WriteLine($"6. feladat:\n" +
-                $"\tÁrajánlatot kap:");
-            var tanulok = (from d in data where d.code == 2 && d.paidSum == 0 && d.results.Values.Min(x => x) > 51 select d).ToList();
+                $"\tÁllásajánlatot kap:");
+            var tanulok = (from d in data where d.code == 2 && d.paidSum == 0 && d.results.Values.Min(x => x) >= 51 select d).ToList();
             foreach (var tanulo in tanulok)
             {
                 Console.WriteLine($"\t{tanulo.name, -20}{tanulo.results.Sum(x => x.Value)}");
@@ -37,8 +37,15 @@ namespace ProgrammingCourse
         {
             Console.WriteLine($"5. feladat:\n" +
                 $"\tA következő diákoknak van tandíjelmaradása:");
-            var diakok = (from d in data where ((d.paidSum < 2600 && d.code == 0) || (d.paidSum < 312 * CourseData.honap && d.code == 1)) select d.name).ToList();
-            foreach (var diak in diakok)
+            List<string> diakok = (from d in data
+                 where
+                 (
+                    (d.paidSum < 2600 && d.code == 0) ||
+                    (d.paidSum < 312 * CourseData.HONAP && d.code == 1) ||
+                    (d.paidSum < 4000 && d.code == 2 && CourseData.HONAP >= 10)
+                 ) select d.name).ToList();
+            
+            foreach (string diak in diakok)
             {
                 Console.WriteLine($"\t{diak}");
             }
